@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * This file contains a few exercises to familiarize you with specific
@@ -79,6 +80,9 @@ public class Silly implements Comparable<Silly>{
      *       strings (e.g. this.name = [first string] + [second string]).
      *       Make sure you document this method!
      */
+    public Silly(String first, String second){
+        this.name = first + second;
+    }
 
 
 
@@ -112,11 +116,11 @@ public class Silly implements Comparable<Silly>{
          *                Fill out the expected_values array with the
          *                values that countStatic will return at each call.
          */
-        x.countStatic();
-        y.countStatic();
-        x.countStatic();
-        x.countStatic();
-        int[] expected_values = {};
+        int first = x.countStatic();
+        int second = y.countStatic();
+        int third = x.countStatic();
+        int fourth = x.countStatic();
+        int[] expected_values = {first, second, third, fourth};
 
         System.out.println("The countStatic calls will return " + Arrays.toString(expected_values));
     }
@@ -134,6 +138,7 @@ public class Silly implements Comparable<Silly>{
     @Override
     public String toString(){
         // TODO (Task 3): Implement the body of this method!
+        return this.name;
     }
 
     /**
@@ -158,6 +163,9 @@ public class Silly implements Comparable<Silly>{
         }
 
         Silly other = (Silly) o; // To access .name of o, we need to cast it.
+        if (other.name == null) {
+            return false;
+        } else return other.name.equals(this.name);
 
         // Hint: to compare strings, we need to use .equals()
         //       e.g. s1.equals(s2)
@@ -194,6 +202,13 @@ public class Silly implements Comparable<Silly>{
          *                You can get the length of a string by using the
          *                .length() method.
          */
+        if(this.name.length() < other.name.length()){
+            return -1;
+        }
+        else if(Objects.equals(this.name.length(), other.name.length())){
+            return 0;
+        }
+        return 1;
     }
 
     /*
